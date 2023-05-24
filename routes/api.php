@@ -19,7 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/orders', [OrderController::class, 'findAll']);
-Route::get('/orders/{id}', [OrderController::class, 'findById']);
-Route::post('/orders', [OrderController::class, 'create']);
-Route::put('/orders/{id}', [OrderController::class, 'update']);
+Route::group(['prefix' => '/digispot'], function () {
+    Route::get('/orders', [OrderController::class, 'findAll']);
+    Route::get('/orders/{id}', [OrderController::class, 'findById']);
+    Route::post('/orders', [OrderController::class, 'create']);
+    Route::put('/orders/{id}', [OrderController::class, 'update']);
+});
