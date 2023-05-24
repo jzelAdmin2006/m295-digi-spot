@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -12,7 +12,7 @@ class OrderController extends Controller
         return Order::get();
     }
 
-    public function create(Request $request)
+    public function create(OrderRequest $request)
     {
         $order = new Order();
         $order->fill($request->all());
@@ -20,7 +20,7 @@ class OrderController extends Controller
         return $order;
     }
 
-    public function update(Request $request, $id)
+    public function update(OrderRequest $request, $id)
     {
         $order = Order::find($id);
         $order->fill($request->all());
