@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 
 class OrderController extends Controller
@@ -17,7 +18,7 @@ class OrderController extends Controller
         $order = new Order();
         $order->fill($request->all());
         $order->save();
-        return $order;
+        return OrderResource::make($order);
     }
 
     public function update(OrderRequest $request, $id)
@@ -25,13 +26,13 @@ class OrderController extends Controller
         $order = Order::find($id);
         $order->fill($request->all());
         $order->save();
-        return $order;
+        return OrderResource::make($order);
     }
 
     public function delete($id)
     {
         $order = Order::find($id);
         $order->delete();
-        return $order;
+        return OrderResource::make($order);
     }
 }
