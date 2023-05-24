@@ -10,7 +10,7 @@ class OrderController extends Controller
 {
     public function findAll()
     {
-        return Order::get();
+        return OrderResource::collection(Order::get());
     }
 
     public function create(OrderRequest $request)
